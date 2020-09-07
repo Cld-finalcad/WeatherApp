@@ -24,9 +24,9 @@ class WeatherFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var viewManager = LinearLayoutManager(requireContext())
+        val viewManager = LinearLayoutManager(requireContext())
         val viewModel: WeatherViewModel by viewModels()
-        var viewAdapter = WeatherCardAdapter()
+        val viewAdapter = WeatherCardAdapter()
 
         recycler.apply {
             // use this setting to improve performance if you know that changes
@@ -42,7 +42,7 @@ class WeatherFragment: Fragment() {
         }
 
         viewModel.weather.observe(viewLifecycleOwner) {
-            viewAdapter.onChanged(it)
+            viewAdapter.dataset = it
         }
 
 

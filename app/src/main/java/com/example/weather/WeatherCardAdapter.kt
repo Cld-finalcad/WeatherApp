@@ -9,32 +9,29 @@ import kotlinx.android.synthetic.main.weather_cards.view.*
 class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>() {
 
     var dataset = listOf<String>("")
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
-    class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView)
+    class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
+        fun showElements(dataset: List<String>, position: Int) {
+            cardView.textView.text = dataset[position]
+        }
+    }
 
-
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): WeatherCardAdapter.MyViewHolder {
-        // create a new view
         val cardView = LayoutInflater.from(parent.context)
             .inflate(R.layout.weather_cards, parent, false) as CardView
 
         return MyViewHolder(cardView)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.cardView.textView.text = dataset[position]
+        holder.showElements(dataset, position)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataset.size
-
-    fun onChanged(new_dataset: List<String>) {
-        dataset = new_dataset
-        notifyDataSetChanged()
-    }
 }
