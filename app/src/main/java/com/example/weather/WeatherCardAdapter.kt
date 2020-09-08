@@ -32,6 +32,5 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
         holder.showElements(dataset, position)
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataset.size
 }

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 class WeatherFragment: Fragment() {
@@ -18,7 +19,6 @@ class WeatherFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
@@ -29,14 +29,10 @@ class WeatherFragment: Fragment() {
         val viewAdapter = WeatherCardAdapter()
 
         recycler.apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
 
-            // use a linear layout manager
             layoutManager = viewManager
 
-            // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
         }
