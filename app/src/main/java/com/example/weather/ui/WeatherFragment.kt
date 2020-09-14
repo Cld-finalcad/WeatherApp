@@ -1,4 +1,4 @@
-package com.example.weather
+package com.example.weather.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.weather.R
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 class WeatherFragment: Fragment() {
@@ -24,6 +22,7 @@ class WeatherFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val viewManager = LinearLayoutManager(requireContext())
         val viewModel: WeatherViewModel by viewModels()
         val viewAdapter = WeatherCardAdapter()
