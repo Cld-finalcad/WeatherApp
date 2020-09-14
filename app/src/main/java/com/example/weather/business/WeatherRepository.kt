@@ -8,13 +8,15 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class WeatherRepository (
-private val webservice : Webservice = retrofit.create(
-    Webservice::class.java),
-private val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao()
+class WeatherRepository(
+    private val webservice: Webservice = retrofit.create(
+        Webservice::class.java
+    ),
+    private val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao(),
+    private val FRESH_TIMEOUT: Long = TimeUnit.DAYS.toMillis(1)
 ) {
 
-    companion object  {
+    companion object {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(MoshiConverterFactory.create())
@@ -22,24 +24,22 @@ private val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao()
 
         val instance: WeatherRepository by lazy { WeatherRepository() }
 
-
-        val FRESH_TIMEOUT = TimeUnit.DAYS.toMillis(1)
     }
 
-    fun getWeather(lat: Double, lon: Double) : LiveData<Weather> {
-        return weatherDao!!.load(lat, lon)
+    fun getWeather(lat: Double, lon: Double): LiveData<Weather> {
+        return weatherDao.load(lat, lon)
     }
 
-     suspend fun refreshWeather(lat: Double, lon: Double) = withContext(Dispatchers.IO) {
+    suspend fun refreshWeather(lat: Double, lon: Double) = withContext(Dispatchers.IO) {
 
-         val weatherExists = weatherDao!!.hasWeather(lat, lon)  > 0
+        val weatherExists = weatherDao.hasWeather(lat, lon) > 0
 
-         if (!weatherExists) {
-             val dataset = webservice.getWeather(lat, lon, "dd06a0028d37813dfa3ac07a81c4e269")
-             weatherDao.save(dataset)
+        if (!weatherExists) {
+            val dataset = webservice.getWeather(lat, lon, "dd06a0028d37813dfa3ac07a81c4e269")
+            weatherDao.save(dataset)
 
 
-         }
+        }
     }
 
 }
