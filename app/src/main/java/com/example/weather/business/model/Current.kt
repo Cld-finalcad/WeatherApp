@@ -1,5 +1,6 @@
-package com.example.weather.business
+package com.example.weather.business.model
 
+import com.example.weather.business.model.WeatherItem
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

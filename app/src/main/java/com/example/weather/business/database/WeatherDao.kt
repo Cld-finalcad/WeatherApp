@@ -1,10 +1,11 @@
-package com.example.weather.business
+package com.example.weather.business.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import com.example.weather.business.model.Weather
 
 @Dao
 interface WeatherDao {

@@ -1,7 +1,8 @@
-package com.example.weather.business
+package com.example.weather.business.database
 
 import android.content.Context
 import androidx.room.*
+import com.example.weather.business.model.Weather
 
 @Database(entities = [Weather::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)

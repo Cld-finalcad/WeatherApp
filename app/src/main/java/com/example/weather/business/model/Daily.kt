@@ -1,4 +1,4 @@
-package com.example.weather.business
+package com.example.weather.business.model
 
 import com.squareup.moshi.JsonClass
 

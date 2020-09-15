@@ -1,6 +1,10 @@
-package com.example.weather.business
+package com.example.weather.business.model
 
 import androidx.room.Entity
+import com.example.weather.business.model.Current
+import com.example.weather.business.model.Daily
+import com.example.weather.business.model.Hourly
+import com.example.weather.business.model.Minutely
 import com.squareup.moshi.JsonClass
 
 @Entity(primaryKeys = arrayOf("lat", "lon"))

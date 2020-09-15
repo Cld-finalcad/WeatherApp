@@ -1,4 +1,4 @@
-package com.example.weather.ui
+package com.example.weather.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weather.R
+import com.example.weather.ui.adapter.WeatherCardAdapter
+import com.example.weather.ui.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 class WeatherFragment: Fragment() {

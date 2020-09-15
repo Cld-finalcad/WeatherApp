@@ -1,6 +1,9 @@
-package com.example.weather.business
+package com.example.weather.business.network
 
 import androidx.lifecycle.LiveData
+import com.example.weather.business.database.WeatherDao
+import com.example.weather.business.database.WeatherDatabase
+import com.example.weather.business.model.Weather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -12,8 +15,7 @@ class WeatherRepository(
     private val webservice: Webservice = retrofit.create(
         Webservice::class.java
     ),
-    private val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao(),
-    private val FRESH_TIMEOUT: Long = TimeUnit.DAYS.toMillis(1)
+    private val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao()
 ) {
 
     companion object {
@@ -22,6 +24,7 @@ class WeatherRepository(
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
+        val FRESH_TIMEOUT: Long = TimeUnit.DAYS.toMillis(1)
         val instance: WeatherRepository by lazy { WeatherRepository() }
 
     }

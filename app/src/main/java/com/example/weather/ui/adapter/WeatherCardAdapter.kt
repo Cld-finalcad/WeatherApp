@@ -1,4 +1,4 @@
-package com.example.weather.ui
+package com.example.weather.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,10 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.example.weather.business.Weather
+import com.example.weather.business.model.Weather
 import com.example.weather.R
+import com.example.weather.business.model.Daily
+import com.example.weather.business.model.WeatherItem
 import kotlinx.android.synthetic.main.weather_cards.view.*
 
 class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>() {
@@ -21,7 +23,12 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
     class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
         fun showElements(dataset: Weather, position: Int) {
 
-            when(dataset.daily[position].weather[0].main) {
+            val weather = dataset.daily[position].weather[0]
+            val daily = dataset.daily[position]
+
+            this.itemView.context
+
+            when(weather.main) {
                 "Clear" -> cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context,
                     R.color.clear
                 ))
@@ -41,14 +48,18 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
                 }
             }
             cardView.city.text = dataset.timezone
-            cardView.date.text = dataset.daily[position].dt.toString()
-            cardView.main.text = dataset.daily[position].weather[0].main
-            cardView.icon.load("http://openweathermap.org/img/wn/"
-                    + dataset.daily[position].weather[0].icon + "@2x.png")
-            cardView.temperature.text = (dataset.daily[position].temp.day.toString() + " ° K")
-            cardView.pressure.text = ("Pressure: " + dataset.daily[position].pressure.toString())
-            cardView.humidity.text = ("Humidity: " + dataset.daily[position].humidity.toString())
-            cardView.wind.text = ("Wind: " + dataset.daily[position].wind_speed.toString() + " m/s")
+            cardView.date.text = daily.dt.toString()
+            cardView.main.text = weather.main
+            cardView.icon.load(String.format(this.itemView.context.getString(R.string.imgsURL),
+                weather.icon))
+            cardView.temperature.text = (String.format(this.itemView.context.getString(R.string.temp),
+                daily.temp.day))
+            cardView.pressure.text = (String.format(this.itemView.context.getString(R.string.pressure),
+               daily.pressure))
+            cardView.humidity.text = (String.format(this.itemView.context.getString(R.string.humidity),
+               daily.humidity))
+            cardView.wind.text = (String.format(this.itemView.context.getString(R.string.wind),
+                daily.wind_speed))
         }
     }
 
@@ -57,10 +68,14 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
         val cardView = LayoutInflater.from(parent.context)
             .inflate(R.layout.weather_cards, parent, false) as CardView
 
-        return MyViewHolder(cardView)
+
+        return MyViewHolder(
+            cardView
+        )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
         holder.showElements(dataset!!, position)
     }
 

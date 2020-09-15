@@ -1,6 +1,10 @@
-package com.example.weather.business
+package com.example.weather.business.database
 
 import androidx.room.TypeConverter
+import com.example.weather.business.model.Current
+import com.example.weather.business.model.Daily
+import com.example.weather.business.model.Hourly
+import com.example.weather.business.model.Minutely
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type

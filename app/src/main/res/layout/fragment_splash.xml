@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/splash"
-    tools:context=".ui.SplashFragment">
+    tools:context=".ui.fragment.SplashFragment">
 <androidx.appcompat.widget.AppCompatTextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
