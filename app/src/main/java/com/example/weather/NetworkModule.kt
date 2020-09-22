@@ -1,9 +1,8 @@
 package com.example.weather
 
-import androidx.room.Room
-import com.example.weather.data.database.WeatherDatabase
+import com.example.weather.data.network.WeatherRepositoryImpl
 import com.example.weather.data.network.Webservice
-import dagger.Binds
+import com.example.weather.domain.repositories.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -19,7 +18,12 @@ class NetworkModule {
         return (Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(MoshiConverterFactory.create())
-            .build().create(Webservice::class.java) )
+            .build().create(Webservice::class.java))
+    }
+
+    @Provides
+    fun providesWeatherRepository(weatherRepositoryImpl: WeatherRepositoryImpl): WeatherRepository {
+        return weatherRepositoryImpl
     }
 
 }

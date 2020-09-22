@@ -1,17 +1,39 @@
 package com.example.weather
 
-import com.example.weather.data.database.WeatherDao
+import android.content.Context
+import com.example.weather.data.models.Weather
 import com.example.weather.data.network.WeatherRepositoryImpl
-import com.example.weather.presenter.activity.MainActivity
 import com.example.weather.presenter.fragment.WeatherFragment
+import dagger.BindsInstance
 import dagger.Component
+import dagger.Module
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, DataBaseModule::class])
+@Component(modules = [
+    NetworkModule::class,
+    DataBaseModule::class,
+    ViewModelBuilderModule::class,
+    WeatherModule::class/*,
+    SubcomponentsModule::class*/
+])
 interface ApplicationComponent {
-    fun inject (activity: MainActivity)
-    fun inject (fragment: WeatherFragment)
-    fun inject (repositoryImpl: WeatherRepositoryImpl)
-    fun inject (weatherDao: WeatherDao)
+    fun inject(fragment: WeatherFragment)
+
+    //fun weatherComponent(): WeatherComponent.Factory
+
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance context: Context
+        ): ApplicationComponent
+    }
 }
+
+/*
+@Module(
+    subcomponents = [
+    WeatherComponent::class
+    ]
+)
+object SubcomponentsModule*/

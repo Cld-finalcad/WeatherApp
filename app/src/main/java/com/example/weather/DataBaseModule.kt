@@ -1,5 +1,6 @@
 package com.example.weather
 
+import android.content.Context
 import androidx.room.Room
 import com.example.weather.data.database.WeatherDao
 import com.example.weather.data.database.WeatherDatabase
@@ -8,22 +9,22 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DataBaseModule(application: WeatherApplication) {
-
-    private val context = application
-    lateinit var database: WeatherDatabase
+class DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideWeatherDatabase(): WeatherDatabase {
-        database = Room.databaseBuilder(context,
-            WeatherDatabase::class.java, "weather.db").build()
-        return database
+    fun provideWeatherDatabase(context: Context): WeatherDatabase {
+        return Room.databaseBuilder(
+            context,
+            WeatherDatabase::class.java, "weather.db"
+        ).build()
     }
 
     @Provides
-    fun provideWeatherDao(): WeatherDao {
-        return  database.weatherDao()
+    fun provideWeatherDao(
+        database: WeatherDatabase
+    ): WeatherDao {
+        return database.weatherDao()
     }
 
 }

@@ -13,7 +13,7 @@ interface WeatherDao {
     fun save(weather: Weather)
 
     @Query("SELECT * FROM weather WHERE lat = :latitude AND lon = :longitude")
-    fun load(latitude: Double, longitude: Double): LiveData<Weather>
+    fun load(latitude: Double, longitude: Double): LiveData<Weather?>
 
     @Query("SELECT COUNT(*) FROM weather WHERE lat == :lat AND lon = :lon")
     fun  hasWeather(lat: Double, lon: Double): Int
