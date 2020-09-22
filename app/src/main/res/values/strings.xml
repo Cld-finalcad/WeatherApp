@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Weather</string>
     <string name="pressure">Pressure: %d</string>
     <string name="humidity">Humidity: %d</string>
     <string name="wind">Wind: %1$.2f m/s</string>
@@ -9,4 +8,5 @@
     <item quantity="one">One notif</item>
     <item quantity="other">%d notif</item>
 </plurals>
+    <string name="app_name">Weather</string>
 </resources>

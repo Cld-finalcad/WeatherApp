@@ -34,6 +34,7 @@ class WeatherFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("WEATHERFRAGMENT", "On Created")
 
         val viewManager = LinearLayoutManager(requireContext())
 
@@ -51,6 +52,17 @@ class WeatherFragment: Fragment() {
         viewModel.weather.observe(viewLifecycleOwner) {
             viewAdapter.dataset = it
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("WEATHERFRAGMENT", "On Pause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("WEATHERFRAGMENT", "On Resume")
+
     }
 
     override fun onAttach(context: Context) {

@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.weather.R
 
@@ -19,6 +20,7 @@ class SplashFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_weatherFragment)
         }, 2000)

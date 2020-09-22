@@ -44,7 +44,7 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
                 }
             }
             cardView.city.text = dataset[position].timezone
-            cardView.date.text = dataset[position].date.toString()
+            cardView.date.text = dataset[position].date
             cardView.main.text = dataset[position].main
             cardView.icon.load(this.itemView.context.getString(
                 R.string.imgsURL,

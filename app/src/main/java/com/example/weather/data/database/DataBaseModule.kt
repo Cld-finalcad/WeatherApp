@@ -1,9 +1,7 @@
-package com.example.weather
+package com.example.weather.data.database
 
 import android.content.Context
 import androidx.room.Room
-import com.example.weather.data.database.WeatherDao
-import com.example.weather.data.database.WeatherDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

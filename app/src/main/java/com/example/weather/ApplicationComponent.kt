@@ -1,12 +1,11 @@
 package com.example.weather
 
 import android.content.Context
-import com.example.weather.data.models.Weather
-import com.example.weather.data.network.WeatherRepositoryImpl
+import com.example.weather.data.database.DataBaseModule
+import com.example.weather.data.network.NetworkModule
 import com.example.weather.presenter.fragment.WeatherFragment
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Module
 import javax.inject.Singleton
 
 @Singleton

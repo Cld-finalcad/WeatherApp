@@ -1,6 +1,8 @@
 package com.example.weather.data.network
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +13,7 @@ import com.example.weather.data.models.Daily
 import com.example.weather.data.models.Weather
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.repositories.WeatherRepository
+import com.example.weather.domain.utils.Convertor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -23,9 +26,7 @@ import javax.inject.Singleton
 class WeatherRepositoryImpl @Inject constructor(
     private val webservice: Webservice,
     private val weatherDao: WeatherDao
-)/*(
-    val weatherDao: WeatherDao = WeatherDatabase.INSTANCE!!.weatherDao()
-)*/ : WeatherRepository {
+) : WeatherRepository {
 
     companion object {
 
@@ -58,10 +59,10 @@ class WeatherRepositoryImpl @Inject constructor(
     fun Daily.toWeatherModel(timezone: String): WeatherModel {
         return WeatherModel(
             timezone = timezone,
-            date = dt,
+            date = Convertor.getDate(dt),
             main = weather[0].main,
             iconURL = weather[0].icon,
-            temperature = temp.day,
+            temperature = Convertor.getTemp(temp.day),
             pressure = pressure,
             humidity = humidity,
             wind = wind_speed
