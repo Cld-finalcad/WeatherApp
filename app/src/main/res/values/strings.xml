@@ -9,4 +9,9 @@
     <item quantity="other">%d notif</item>
 </plurals>
     <string name="app_name">Weather</string>
+    <string name="recommandations">Recommandations</string>
+    <string name="sunglass">It will be sunny outside. You should wear sunglasses.</string>
+    <string name="winterjecket">It will be cold outside. You should wear a winter jacket</string>
+    <string name="sweater">It will be chilly outside. You should wear a sweater.</string>
+    <string name="windbreaker">It will be windy outside. You should wear a windbreaker.</string>
 </resources>

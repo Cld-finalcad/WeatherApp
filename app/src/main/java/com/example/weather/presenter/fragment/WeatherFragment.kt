@@ -59,5 +59,4 @@ class WeatherFragment @Inject constructor(): Fragment() {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
     }
-
 }

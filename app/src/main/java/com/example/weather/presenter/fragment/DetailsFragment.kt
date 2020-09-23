@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.weather.R
 
-class BlankFragment : Fragment() {
+class DetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class BlankFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+        return inflater.inflate(R.layout.fragment_details, container, false)
     }
-    
+
 }

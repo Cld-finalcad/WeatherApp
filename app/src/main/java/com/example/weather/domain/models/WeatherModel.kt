@@ -8,6 +8,10 @@ data class WeatherModel (
     val temperature: Double,
     val pressure: Int,
     val humidity: Int,
-    val wind: Double
-
+    val wind: Double,
+    val flags: Array<Flag>
 )
+
+enum class Flag {
+    SUNNY, COLD, CHILLY, WINDY
+}

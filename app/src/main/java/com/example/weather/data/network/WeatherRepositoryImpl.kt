@@ -9,6 +9,7 @@ import com.example.weather.data.models.Daily
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.repositories.WeatherRepository
 import com.example.weather.domain.utils.Convertor
+import com.example.weather.domain.utils.Recommandations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
@@ -32,17 +33,13 @@ class WeatherRepositoryImpl @Inject constructor(
             .map { weather ->
                 Log.d("Repository get map", weather.toString())
                 weather?.map {
-                    Log.d("Repository get weather", it.toString())
-                    it.toWeatherModel()
+                     it.toWeatherModel()
                     }
                     ?: emptyList()
             }
     }
 
     override suspend fun refreshWeather(lat: Double, lon: Double) = withContext(Dispatchers.IO) {
-        weatherDao.nukeTable()
-        Log.d("Repository refresh", weatherDao.loadAll().toString())
-
         val weatherExists = weatherDao.hasWeather(lat, lon) > 0
 
         if (!weatherExists) {
@@ -81,7 +78,8 @@ class WeatherRepositoryImpl @Inject constructor(
             temperature = Convertor.getTemp(temperature),
             pressure = pressure,
             humidity = humidity,
-            wind = wind
+            wind = wind,
+            flags = Recommandations.setFlags(main, temperature, wind)
         )
     }
 

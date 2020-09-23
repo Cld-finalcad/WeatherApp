@@ -26,5 +26,4 @@ class DataBaseModule {
     ): WeatherDao {
         return database.weatherDao()
     }
-
 }

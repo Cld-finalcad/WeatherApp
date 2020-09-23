@@ -1,9 +1,14 @@
 package com.example.weather.presenter.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.weather.data.models.Weather
@@ -21,6 +26,10 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
 
     class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
         fun showElements(dataset: List<WeatherModel>, position: Int) {
+
+            cardView.setOnClickListener(View.OnClickListener {
+                cardView.findNavController().navigate(R.id.action_weatherFragment_to_detailsFragment)
+            })
 
             this.itemView.context
 
@@ -74,7 +83,6 @@ class WeatherCardAdapter: RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         holder.showElements(dataset!!, position)
     }
 

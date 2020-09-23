@@ -5,4 +5,9 @@
     <string name="wind">Vent: %1$.2f m/s</string>
     <string name="humidity">Humidité: %d</string>
     <string name="pressure">Pression: %d</string>
+    <string name="recommandations">Recommandations</string>
+    <string name="sunglass">Le temps sera lumineux. Nous vous recommandons de porter des lunettes de soleil</string>
+    <string name="winterjecket">Il fera froid dehors. Nous vous recommandons de porter un manteau</string>
+    <string name="sweater">Il fera frisqué dehors. Nous vous recommandons de porter un pull.</string>
+    <string name="windbreaker">Le temps sera venteux dehors. Nous vous recommandons de porter un coupe-vent</string>
 </resources>
