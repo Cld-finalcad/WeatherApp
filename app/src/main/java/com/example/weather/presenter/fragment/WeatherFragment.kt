@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weather.*
 import com.example.weather.presenter.adapter.WeatherCardAdapter
 import com.example.weather.presenter.viewmodel.WeatherViewModel
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_weather.*
 import javax.inject.Inject
 
-class WeatherFragment: Fragment() {
+class WeatherFragment @Inject constructor(): Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     val viewModel by viewModels<WeatherViewModel> {viewModelFactory}
@@ -34,7 +36,6 @@ class WeatherFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("WEATHERFRAGMENT", "On Created")
 
         val viewManager = LinearLayoutManager(requireContext())
 
@@ -54,20 +55,9 @@ class WeatherFragment: Fragment() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("WEATHERFRAGMENT", "On Pause")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("WEATHERFRAGMENT", "On Resume")
-
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireContext().applicationContext as WeatherApplication).applicationComponent.inject(this)
+        AndroidSupportInjection.inject(this)
     }
 
 }

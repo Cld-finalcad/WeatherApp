@@ -1,28 +1,10 @@
 package com.example.weather.data.database
 
-import android.content.Context
-import androidx.room.*
-import com.example.weather.data.models.Weather
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import com.example.weather.data.database.models.WeatherModelDB
 
-@Database(entities = [Weather::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+@Database(entities = [WeatherModelDB::class], version = 3, exportSchema = false)
 abstract class WeatherDatabase: RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
-
-    companion object {
-        var INSTANCE: WeatherDatabase? = null
-
-        fun getInstance(context: Context): WeatherDatabase? {
-            if (INSTANCE == null) {
-                synchronized(WeatherDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, WeatherDatabase::class.java, "weather.db").build()
-                }
-            }
-            return INSTANCE
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
-        }
-    }
 }

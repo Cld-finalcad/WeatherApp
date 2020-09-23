@@ -10,12 +10,12 @@ class Convertor {
 
         val contryCode = Locale.getDefault().country
 
-        fun getDate(date: Int): String {
+        fun getDate(date: String): String {
 
             Log.d("CONVERTOR", date.toString() + " " + date.toLong().toString())
 
 
-            if ("FR".equals(contryCode)) return getDateTime(date.toString(), "dd/MM HH:mm z", "GMT+2")
+            if ("FR".equals(contryCode)) return getDateTime(date, "dd/MM HH:mm z", "GMT+2")
 
             return getDateTime(date.toString(), "MM/dd HH:mm z", "GMT-4")
         }

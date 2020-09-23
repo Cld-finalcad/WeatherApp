@@ -15,7 +15,9 @@ class DataBaseModule {
         return Room.databaseBuilder(
             context,
             WeatherDatabase::class.java, "weather.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

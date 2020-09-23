@@ -1,9 +1,7 @@
 package com.example.weather.data.models
 
-import androidx.room.Entity
 import com.squareup.moshi.JsonClass
 
-@Entity(primaryKeys = arrayOf("lat", "lon"))
 @JsonClass(generateAdapter = true)
 
 data class Weather(val lat: Double, val lon: Double, val timezone: String, val timezone_offset: Int,
