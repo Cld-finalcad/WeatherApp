@@ -15,4 +15,5 @@
     <string name="winterjecket">It will be cold outside. You should wear a winter jacket</string>
     <string name="sweater">It will be chilly outside. You should wear a sweater.</string>
     <string name="windbreaker">It will be windy outside. You should wear a windbreaker.</string>
+    <string name="norecommandation">No special recommendation for this day</string>
 </resources>

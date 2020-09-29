@@ -20,15 +20,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/none"
+        android:id="@+id/nonetxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="No special recommandation for this day"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/norecommandation"
+        android:textColor="@color/snow"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/none"
+        app:layout_constraintTop_toBottomOf="@id/recommendations"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/none"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/norecomm"
         android:visibility="gone"/>
 
     <ImageView

@@ -10,4 +10,5 @@
     <string name="winterjecket">Il fera froid dehors. Nous vous recommandons de porter un manteau</string>
     <string name="sweater">Il fera frisqué dehors. Nous vous recommandons de porter un pull.</string>
     <string name="windbreaker">Le temps sera venteux dehors. Nous vous recommandons de porter un coupe-vent</string>
+    <string name="norecommandation">Pas de recommandation spéciale pour ce jour</string>
 </resources>

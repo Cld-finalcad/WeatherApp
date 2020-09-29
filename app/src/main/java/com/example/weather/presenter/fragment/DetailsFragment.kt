@@ -15,7 +15,16 @@ import com.example.weather.domain.models.Flag
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.presenter.viewmodel.WeatherViewModel
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_details.view.*
 import kotlinx.android.synthetic.main.recommandations_view.view.*
+import kotlinx.android.synthetic.main.recommandations_view.view.sunglass
+import kotlinx.android.synthetic.main.recommandations_view.view.sunglasstxt
+import kotlinx.android.synthetic.main.recommandations_view.view.sweater
+import kotlinx.android.synthetic.main.recommandations_view.view.sweatertxt
+import kotlinx.android.synthetic.main.recommandations_view.view.windbreaker
+import kotlinx.android.synthetic.main.recommandations_view.view.windbreakertxt
+import kotlinx.android.synthetic.main.recommandations_view.view.winterjacket
+import kotlinx.android.synthetic.main.recommandations_view.view.winterjackettxt
 import javax.inject.Inject
 
 class DetailsFragment @Inject constructor() : DialogFragment() {
@@ -38,7 +47,6 @@ class DetailsFragment @Inject constructor() : DialogFragment() {
         viewModel.weatherSelected.observe(
             viewLifecycleOwner,
             Observer<WeatherModel> { weatherModel ->
-
                 if (!weatherModel.flags.contains(Flag.SUNNY)) {
                     view.sunglass.visibility = View.GONE
                     view.sunglasstxt.visibility = View.GONE
@@ -54,6 +62,10 @@ class DetailsFragment @Inject constructor() : DialogFragment() {
                 if (!weatherModel.flags.contains(Flag.COLD)) {
                     view.winterjacket.visibility = View.GONE
                     view.winterjackettxt.visibility = View.GONE
+                }
+                if (weatherModel.flags.size == 0) {
+                    view.none.visibility = View.VISIBLE
+                    view.nonetxt.visibility = View.VISIBLE
                 }
             })
     }
