@@ -1,17 +1,16 @@
-package com.example.weather.data.network
+package com.example.weather.data
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.weather.data.database.WeatherDao
 import com.example.weather.data.database.models.WeatherModelDB
 import com.example.weather.data.models.Daily
-import com.example.weather.domain.models.WeatherModel
+import com.example.weather.data.network.Webservice
 import com.example.weather.domain.repositories.WeatherRepository
-import com.example.weather.domain.utils.Convertor
-import com.example.weather.domain.utils.Recommandations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,47 +18,53 @@ import javax.inject.Singleton
 @Singleton
 class WeatherRepositoryImpl @Inject constructor(
     private val webservice: Webservice,
-    private val weatherDao: WeatherDao
+    private val weatherDao: WeatherDao,
+    private val sharedPreferences: SharedPreferences
 ) : WeatherRepository {
 
     companion object {
-
         val FRESH_TIMEOUT: Long = TimeUnit.DAYS.toMillis(1)
-
     }
 
-    override fun getWeather(lat: Double, lon: Double): LiveData<List<WeatherModel>> {
+    override fun getWeather(lat: Double, lon: Double): LiveData<List<WeatherModelDB>?> {
         return weatherDao.load(lat, lon)
-            .map { weather ->
-                Log.d("Repository get map", weather.toString())
-                weather?.map {
-                     it.toWeatherModel()
-                    }
-                    ?: emptyList()
-            }
     }
 
     override suspend fun refreshWeather(lat: Double, lon: Double) = withContext(Dispatchers.IO) {
         val weatherExists = weatherDao.hasWeather(lat, lon) > 0
 
-        if (!weatherExists) {
+        if (!weatherExists or (getTimeStamp() >= FRESH_TIMEOUT)) {
             val dataset = webservice.getWeather(lat, lon, "dd06a0028d37813dfa3ac07a81c4e269")
             Log.d("Repository refresh", weatherExists.toString() + " " + dataset)
-            val timestamp = System.currentTimeMillis() / 1000
+            setTimeStamp()
+
             val weatherModels = dataset.daily.map {
-                it.toWeatherModelDB(dataset.timezone, timestamp, lon, lat)
+                it.toWeatherModelDB(dataset.timezone, lon, lat)
             }
             weatherDao.save(weatherModels)
         }
     }
 
-    fun Daily.toWeatherModelDB(timezone: String, timestamp: Long, lon: Double, lat: Double): WeatherModelDB {
+
+    fun setTimeStamp() {
+        val timestamp = System.currentTimeMillis() / 1000
+        val editor = sharedPreferences.edit()
+        editor.putLong("timestamp", timestamp)
+        editor.apply()
+    }
+
+    fun getTimeStamp(): Long {
+        val timestamp = System.currentTimeMillis() / 1000
+
+        return timestamp - sharedPreferences.getLong("timestamp", 0)
+    }
+
+    fun Daily.toWeatherModelDB(timezone: String, lon: Double, lat: Double): WeatherModelDB {
         return WeatherModelDB(
             lat = lat,
             lon = lon,
-            timestamp = timestamp,
             timezone = timezone,
-            date = dt.toString(),
+            date = Date(dt.toLong()),
             main = weather[0].main,
             iconURL = weather[0].icon,
             temperature = temp.day,
@@ -68,19 +73,4 @@ class WeatherRepositoryImpl @Inject constructor(
             wind = wind_speed
         )
     }
-
-    fun WeatherModelDB.toWeatherModel(): WeatherModel {
-        return WeatherModel(
-            timezone = timezone,
-            date = Convertor.getDate(this.date),
-            main = main,
-            iconURL = iconURL,
-            temperature = Convertor.getTemp(temperature),
-            pressure = pressure,
-            humidity = humidity,
-            wind = wind,
-            flags = Recommandations.setFlags(main, temperature, wind)
-        )
-    }
-
 }

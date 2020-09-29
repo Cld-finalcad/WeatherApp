@@ -4,6 +4,7 @@
     <string name="wind">Wind: %1$.2f m/s</string>
     <string name="temp">%1$.2f ° K</string>
     <string name="imgsURL" translatable="false">http://openweathermap.org/img/wn/%s@2x.png</string>
+    <string name="timestamp" translatable="false">timestamp</string>
 <plurals name="notif">
     <item quantity="one">One notif</item>
     <item quantity="other">%d notif</item>

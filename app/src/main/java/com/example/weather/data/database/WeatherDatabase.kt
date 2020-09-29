@@ -2,9 +2,11 @@ package com.example.weather.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.weather.data.database.models.WeatherModelDB
 
-@Database(entities = [WeatherModelDB::class], version = 3, exportSchema = false)
+@Database(entities = [WeatherModelDB::class], version = 5, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class WeatherDatabase: RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
 }

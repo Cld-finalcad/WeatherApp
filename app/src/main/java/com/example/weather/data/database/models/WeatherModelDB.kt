@@ -1,18 +1,16 @@
 package com.example.weather.data.database.models
 
 import androidx.room.Entity
-import com.squareup.moshi.JsonClass
+import java.util.*
 
 
-@Entity(primaryKeys = arrayOf("lat", "lon", "date"))
-@JsonClass(generateAdapter = true)
+@Entity(tableName = "week_weather", primaryKeys = arrayOf("lat", "lon", "date"))
 
 data class WeatherModelDB (
     val lat: Double,
     val lon: Double,
-    val timestamp: Long,
     val timezone: String,
-    val date: String,
+    val date: Date,
     val main: String,
     val iconURL: String,
     val temperature: Double,

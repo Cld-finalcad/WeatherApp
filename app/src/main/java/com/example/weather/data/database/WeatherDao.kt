@@ -6,22 +6,21 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.example.weather.data.database.models.WeatherModelDB
-import com.example.weather.data.models.Weather
 
 @Dao
 interface WeatherDao {
     @Insert(onConflict = REPLACE)
     fun save(weather: List<WeatherModelDB>)
 
-    @Query("SELECT * FROM weathermodeldb WHERE lat = :latitude AND lon = :longitude")
+    @Query("SELECT * FROM week_weather WHERE lat = :latitude AND lon = :longitude")
     fun load(latitude: Double, longitude: Double): LiveData<List<WeatherModelDB>?>
 
-    @Query("SELECT * FROM weathermodeldb")
+    @Query("SELECT * FROM week_weather")
     fun loadAll(): List<WeatherModelDB>
 
-    @Query("SELECT COUNT(*) FROM weathermodeldb WHERE lat == :lat AND lon = :lon")
+    @Query("SELECT COUNT(*) FROM week_weather WHERE lat == :lat AND lon = :lon")
     fun  hasWeather(lat: Double, lon: Double): Int
 
-    @Query("DELETE FROM weathermodeldb")
+    @Query("DELETE FROM week_weather")
     fun nukeTable()
 }

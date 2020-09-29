@@ -3,11 +3,8 @@ package com.example.weather
 import android.content.Context
 import com.example.weather.data.database.DataBaseModule
 import com.example.weather.data.network.NetworkModule
-import com.example.weather.presenter.activity.MainActivity
-import com.example.weather.presenter.fragment.WeatherFragment
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
@@ -16,9 +13,11 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     NetworkModule::class,
     DataBaseModule::class,
+    SharedPreferencesModule::class,
     ViewModelBuilderModule::class,
     WeatherModule::class,
-    WeatherFragmentModule::class
+    WeatherFragmentModule::class,
+    DetailsFragmentModule::class
 ])
 interface ApplicationComponent {
     @Component.Factory
@@ -28,6 +27,4 @@ interface ApplicationComponent {
         ): ApplicationComponent
     }
     fun inject(weatherApplication: WeatherApplication)
-    fun inject(fragment: WeatherFragment)
-
 }

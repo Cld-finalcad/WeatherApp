@@ -10,14 +10,11 @@ class Convertor {
 
         val contryCode = Locale.getDefault().country
 
-        fun getDate(date: String): String {
-
-            Log.d("CONVERTOR", date.toString() + " " + date.toLong().toString())
-
+        fun getDate(date: Date): String {
 
             if ("FR".equals(contryCode)) return getDateTime(date, "dd/MM HH:mm z", "GMT+2")
 
-            return getDateTime(date.toString(), "MM/dd HH:mm z", "GMT-4")
+            return getDateTime(date, "MM/dd HH:mm z", "GMT-4")
         }
 
         fun getTemp(temp: Double): Double {
@@ -26,12 +23,12 @@ class Convertor {
             return temp
         }
 
-        private fun getDateTime(s: String, format: String, timeZone: String): String {
+        private fun getDateTime(date: Date, format: String, timeZone: String): String {
             try {
                 val sdf = SimpleDateFormat(format)
                 sdf.timeZone = TimeZone.getTimeZone(timeZone)
-                val netDate = Date(s.toLong() * 1000)
-                return sdf.format(netDate)
+                //val netDate = Date(s.toLong() * 1000)
+                return sdf.format(date)
             } catch (e: Exception) {
                 return e.toString()
             }

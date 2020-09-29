@@ -26,7 +26,7 @@
             android:id="@+id/action_weatherFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/detailsFragment"
         android:name="com.example.weather.presenter.fragment.DetailsFragment"
         android:label="fragment_details"

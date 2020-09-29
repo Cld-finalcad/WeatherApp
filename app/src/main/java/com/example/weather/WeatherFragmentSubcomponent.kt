@@ -8,5 +8,4 @@ import dagger.android.AndroidInjector
 interface WeatherFragmentSubcomponent: AndroidInjector<WeatherFragment> {
     @Subcomponent.Factory
     interface Factory: AndroidInjector.Factory<WeatherFragment>{}
-
 }
