@@ -1,6 +1,8 @@
 package com.example.weather.presenter.fragment
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -78,6 +80,7 @@ class DetailsFragment @Inject constructor() : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog?.window?.attributes?.alpha = 0.8f
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setLayout(
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.WRAP_CONTENT

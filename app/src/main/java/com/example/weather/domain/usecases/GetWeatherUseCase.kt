@@ -6,6 +6,7 @@ import androidx.lifecycle.map
 import com.example.weather.data.WeatherRepositoryImpl
 import com.example.weather.data.database.models.WeatherModelDB
 import com.example.weather.domain.models.WeatherModel
+import com.example.weather.domain.models.WeatherModelRaw
 import com.example.weather.domain.utils.Convertor
 import com.example.weather.domain.utils.Recommandations
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class GetWeatherUseCase @Inject constructor(private val repo: WeatherRepositoryI
         }
     }
 
-    fun WeatherModelDB.toWeatherModel(): WeatherModel {
+    fun WeatherModelRaw.toWeatherModel(): WeatherModel {
         return WeatherModel(
             timezone = timezone,
             date = Convertor.getDate(this.date),

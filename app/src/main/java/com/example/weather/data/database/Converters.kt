@@ -16,6 +16,6 @@ class Converters {
     fun dateToTimeStamp(date: Date): Long = date.time
 
     @TypeConverter
-    fun timeStampToDate(long: Long): Date = long.let { Date(it * 1000) }
+    fun timeStampToDate(long: Long): Date = long.let { Date(it) }
 
 }
