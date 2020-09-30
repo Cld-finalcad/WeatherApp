@@ -3,6 +3,7 @@ package com.example.weather.presenter.fragment
 import RecyclerItemClickListener
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -54,8 +55,10 @@ class WeatherFragment @Inject constructor() : Fragment() {
                 recycler,
                 object : RecyclerItemClickListener.ClickListener {
                     override fun onClick(view: View?, position: Int) {
+                        Log.d("WeatherFragment", "onClick")
                         viewModel.sendWeather(viewModel.weather.value!!.get(position))
-                        findNavController().navigate(R.id.action_weatherFragment_to_detailsFragment)
+                        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+                            findNavController().navigate(R.id.action_weatherFragment_to_detailsFragment)
                     }
 
                     override fun onLongClick(view: View?, position: Int) {}

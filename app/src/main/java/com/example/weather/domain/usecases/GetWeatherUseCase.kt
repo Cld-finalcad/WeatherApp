@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.weather.data.WeatherRepositoryImpl
-import com.example.weather.data.database.models.WeatherModelDB
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.models.WeatherModelRaw
 import com.example.weather.domain.utils.Convertor

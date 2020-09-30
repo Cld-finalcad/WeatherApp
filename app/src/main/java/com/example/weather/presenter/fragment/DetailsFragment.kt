@@ -53,21 +53,41 @@ class DetailsFragment @Inject constructor() : DialogFragment() {
                     view.sunglass.visibility = View.GONE
                     view.sunglasstxt.visibility = View.GONE
                 }
+                else {
+                    view.sunglass.visibility = View.VISIBLE
+                    view.sunglasstxt.visibility = View.VISIBLE
+                }
                 if (!weatherModel.flags.contains(Flag.CHILLY)) {
                     view.sweater.visibility = View.GONE
                     view.sweatertxt.visibility = View.GONE
+                }
+                else {
+                    view.sweater.visibility = View.VISIBLE
+                    view.sweatertxt.visibility = View.VISIBLE
                 }
                 if (!weatherModel.flags.contains(Flag.WINDY)) {
                     view.windbreaker.visibility = View.GONE
                     view.windbreakertxt.visibility = View.GONE
                 }
+                else {
+                    view.windbreaker.visibility = View.VISIBLE
+                    view.windbreakertxt.visibility = View.VISIBLE
+                }
                 if (!weatherModel.flags.contains(Flag.COLD)) {
                     view.winterjacket.visibility = View.GONE
                     view.winterjackettxt.visibility = View.GONE
                 }
+                else {
+                    view.winterjacket.visibility = View.VISIBLE
+                    view.winterjackettxt.visibility = View.VISIBLE
+                }
                 if (weatherModel.flags.size == 0) {
                     view.none.visibility = View.VISIBLE
                     view.nonetxt.visibility = View.VISIBLE
+                }
+                else {
+                    view.none.visibility = View.GONE
+                    view.nonetxt.visibility = View.GONE
                 }
             })
     }

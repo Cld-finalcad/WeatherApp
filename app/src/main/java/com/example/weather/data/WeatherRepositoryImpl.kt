@@ -69,6 +69,7 @@ class WeatherRepositoryImpl @Inject constructor(
     }
 
     fun Daily.toWeatherModelDB(timezone: String, lon: Double, lat: Double): WeatherModelDB {
+
         return WeatherModelDB(
             lat = lat,
             lon = lon,

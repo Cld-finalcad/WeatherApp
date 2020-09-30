@@ -22,41 +22,15 @@ class WeatherCardAdapter : RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>
 
     class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
 
-        fun bind(weatherModel: WeatherModel, touchListener: RecyclerView.OnItemTouchListener) {
-            cardView.setOnClickListener{
-                //touchListener.onTouchEvent()
-            }
-        }
-
         fun showElements(dataset: List<WeatherModel>, position: Int) {
 
             this.itemView.context
 
             when (dataset[position].main) {
-                "Clear" -> cardView.setCardBackgroundColor(
-                    ContextCompat.getColor(
-                        cardView.context,
-                        R.color.clear
-                    )
-                )
-                "Clouds" -> cardView.setCardBackgroundColor(
-                    ContextCompat.getColor(
-                        cardView.context,
-                        R.color.clouds
-                    )
-                )
-                "Snow" -> cardView.setCardBackgroundColor(
-                    ContextCompat.getColor(
-                        cardView.context,
-                        R.color.snow
-                    )
-                )
-                "Rain" -> cardView.setCardBackgroundColor(
-                    ContextCompat.getColor(
-                        cardView.context,
-                        R.color.rain
-                    )
-                )
+                "Clear" -> cardView.cardlayout.setBackgroundResource(R.drawable.sunny)
+                 "Clouds" -> cardView.cardlayout.setBackgroundResource(R.drawable.cloud)
+                "Snow" -> cardView.cardlayout.setBackgroundResource(R.drawable.snow)
+                "Rain" -> cardView.cardlayout.setBackgroundResource(R.drawable.rain)
                 else -> {
                     cardView.setCardBackgroundColor(
                         ContextCompat.getColor(
