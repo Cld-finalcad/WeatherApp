@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.example.weather.data.database.models.WeatherModelDB
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
@@ -13,7 +14,7 @@ interface WeatherDao {
     fun save(weather: List<WeatherModelDB>)
 
     @Query("SELECT * FROM week_weather WHERE lat = :latitude AND lon = :longitude")
-    fun load(latitude: Double, longitude: Double): LiveData<List<WeatherModelDB>?>
+    fun load(latitude: Double, longitude: Double): Flow<List<WeatherModelDB>?>
 
     @Query("SELECT * FROM week_weather")
     fun loadAll(): List<WeatherModelDB>

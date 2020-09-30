@@ -1,149 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_recommandation"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
     android:background="@drawable/gradient"
-    app:layout_constraintCircleRadius="20dp"
-    tools:context=".presenter.fragment.DetailsFragment">
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/recommendations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/recommandations"
-        android:textColor="@color/snow"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scroll_recommandation"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recommendations">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/nonetxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/norecommandation"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                android:layout_marginTop="30dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/none"
-                android:visibility="gone"/>
-            <ImageView
-                android:id="@+id/none"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/norecomm"
-                android:visibility="gone"/>
+        <TextView
+            android:id="@+id/recommendations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/recommandations"
+            android:textColor="@color/snow"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/sunglass"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/sunglasses"
-                android:visibility="gone"/>
+        <TextView
+            android:id="@+id/nonetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/norecommandation"
+            android:textColor="@color/snow"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/recommendations"
+            app:layout_constraintBottom_toTopOf="@id/none"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-            <TextView
-                android:id="@+id/sunglasstxt"
-                style="@style/details_text"
-                android:text="@string/sunglass"
-                app:layout_constraintBottom_toBottomOf="@id/sunglass"
-                app:layout_constraintLeft_toRightOf="@id/sunglass"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/sunglass"
-                android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/none"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/norecomm"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/sweater"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sunglass"
-                android:src="@drawable/sweater"
-                android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/sunglass"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/sunglasses"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/recommendations"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
-            <TextView
-                android:id="@+id/sweatertxt"
-                style="@style/details_text"
-                android:text="@string/sweater"
-                app:layout_constraintBottom_toBottomOf="@+id/sweater"
-                app:layout_constraintLeft_toRightOf="@id/sweater"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/sweater"
-                android:visibility="gone"/>
+        <TextView
+            android:id="@+id/sunglasstxt"
+            style="@style/details_text"
+            android:text="@string/sunglass"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sunglass"
+            app:layout_constraintLeft_toRightOf="@id/sunglass"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sunglass" />
 
-            <ImageView
-                android:id="@+id/windbreaker"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sweater"
-                android:src="@drawable/windbreaker"
-                android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/sweater"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/sweater"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sunglass" />
 
-            <TextView
-                android:id="@+id/windbreakertxt"
-                style="@style/details_text"
-                android:text="@string/windbreaker"
-                app:layout_constraintBottom_toBottomOf="@id/windbreaker"
-                app:layout_constraintLeft_toRightOf="@id/windbreaker"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/windbreaker"
-                android:visibility="gone"/>
+        <TextView
+            android:id="@+id/sweatertxt"
+            style="@style/details_text"
+            android:text="@string/sweater"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/sweater"
+            app:layout_constraintLeft_toRightOf="@id/sweater"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sweater" />
 
-            <ImageView
-                android:id="@+id/winterjacket"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/windbreaker"
-                android:src="@drawable/jacket"
-                android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/windbreaker"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/windbreaker"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sweater" />
 
-            <TextView
-                android:id="@+id/winterjackettxt"
-                style="@style/details_text"
-                android:text="@string/winterjecket"
-                app:layout_constraintBottom_toBottomOf="@id/winterjacket"
-                app:layout_constraintLeft_toRightOf="@id/winterjacket"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/winterjacket"
-                android:visibility="gone"/>
+        <TextView
+            android:id="@+id/windbreakertxt"
+            style="@style/details_text"
+            android:text="@string/windbreaker"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/windbreaker"
+            app:layout_constraintLeft_toRightOf="@id/windbreaker"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/windbreaker" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <ImageView
+            android:id="@+id/winterjacket"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/jacket"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/windbreaker" />
 
+        <TextView
+            android:id="@+id/winterjackettxt"
+            style="@style/details_text"
+            android:text="@string/winterjecket"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/winterjacket"
+            app:layout_constraintLeft_toRightOf="@id/winterjacket"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/winterjacket" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

@@ -1,8 +1,6 @@
 package com.example.weather.presenter.fragment
 
-import RecyclerItemClickListener
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +14,9 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weather.R
+import com.example.weather.domain.models.WeatherModel
 import com.example.weather.presenter.adapter.WeatherCardAdapter
+import com.example.weather.presenter.adapter.WeatherClickListener
 import com.example.weather.presenter.viewmodel.WeatherViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_weather.*
@@ -39,7 +39,11 @@ class WeatherFragment @Inject constructor() : Fragment() {
 
         val viewManager = LinearLayoutManager(requireContext())
 
-        val viewAdapter = WeatherCardAdapter()
+        val viewAdapter = WeatherCardAdapter(object : WeatherClickListener {
+            override fun onWeatherClick(weatherModel: WeatherModel) {
+                viewModel.sendWeather(weatherModel)
+            }
+        })
 
         recycler.apply {
             setHasFixedSize(true)
@@ -48,22 +52,6 @@ class WeatherFragment @Inject constructor() : Fragment() {
 
             adapter = viewAdapter
         }
-
-        recycler.addOnItemTouchListener(
-            RecyclerItemClickListener(
-                context,
-                recycler,
-                object : RecyclerItemClickListener.ClickListener {
-                    override fun onClick(view: View?, position: Int) {
-                        Log.d("WeatherFragment", "onClick")
-                        viewModel.sendWeather(viewModel.weather.value!!.get(position))
-                        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
-                            findNavController().navigate(R.id.action_weatherFragment_to_detailsFragment)
-                    }
-
-                    override fun onLongClick(view: View?, position: Int) {}
-                })
-        )
 
         viewModel.weather.observe(viewLifecycleOwner) {
             viewAdapter.dataset = it

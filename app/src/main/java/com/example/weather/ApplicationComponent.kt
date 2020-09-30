@@ -17,7 +17,8 @@ import javax.inject.Singleton
     ViewModelBuilderModule::class,
     WeatherModule::class,
     WeatherFragmentModule::class,
-    DetailsFragmentModule::class
+    DetailsFragmentModule::class,
+    ActivityBindingModule::class
 ])
 interface ApplicationComponent {
     @Component.Factory

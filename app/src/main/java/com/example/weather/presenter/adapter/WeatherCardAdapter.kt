@@ -12,21 +12,25 @@ import com.example.weather.domain.models.WeatherModel
 
 import kotlinx.android.synthetic.main.weather_cards.view.*
 
-class WeatherCardAdapter : RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>() {
+class WeatherCardAdapter(val weatherClickListener: WeatherClickListener) : RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>() {
 
-    var dataset: List<WeatherModel>? = null
+    var dataset: List<WeatherModel> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    class MyViewHolder(val cardView: CardView) : RecyclerView.ViewHolder(cardView) {
+    class MyViewHolder(val cardView: CardView, val weatherClickListener: WeatherClickListener) : RecyclerView.ViewHolder(cardView) {
 
-        fun showElements(dataset: List<WeatherModel>, position: Int) {
+        fun showElements(weatherModel: WeatherModel) {
+
+            cardView.setOnClickListener {
+                weatherClickListener.onWeatherClick(weatherModel)
+            }
 
             this.itemView.context
 
-            when (dataset[position].main) {
+            when (weatherModel.main) {
                 "Clear" -> cardView.cardlayout.setBackgroundResource(R.drawable.sunny)
                  "Clouds" -> cardView.cardlayout.setBackgroundResource(R.drawable.cloud)
                 "Snow" -> cardView.cardlayout.setBackgroundResource(R.drawable.snow)
@@ -40,31 +44,31 @@ class WeatherCardAdapter : RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>
                     )
                 }
             }
-            cardView.city.text = dataset[position].timezone
-            cardView.date.text = dataset[position].date
-            cardView.main.text = dataset[position].main
+            cardView.city.text = weatherModel.timezone
+            cardView.date.text = weatherModel.date
+            cardView.main.text = weatherModel.main
             cardView.icon.load(
                 this.itemView.context.getString(
                     R.string.imgsURL,
-                    dataset[position].iconURL
+                    weatherModel.iconURL
                 )
             )
 //            this.itemView.context.resources.getQuantityString(R.plurals.notif, )
             cardView.temperature.text = (this.itemView.context.getString(
                 R.string.temp,
-                dataset[position].temperature
+                weatherModel.temperature
             ))
             cardView.pressure.text = (this.itemView.context.getString(
                 R.string.pressure,
-                dataset[position].pressure
+                weatherModel.pressure
             ))
             cardView.humidity.text = (this.itemView.context.getString(
                 R.string.humidity,
-                dataset[position].humidity
+                weatherModel.humidity
             ))
             cardView.wind.text = (this.itemView.context.getString(
                 R.string.wind,
-                dataset[position].wind
+                weatherModel.wind
             ))
         }
     }
@@ -78,14 +82,18 @@ class WeatherCardAdapter : RecyclerView.Adapter<WeatherCardAdapter.MyViewHolder>
 
 
         return MyViewHolder(
-            cardView
+            cardView,
+            weatherClickListener
         )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.showElements(dataset!!, position)
-        //holder.bind(dataset!!.get(position), itemTouchListener)
+        holder.showElements(dataset[position])
     }
 
-    override fun getItemCount() = dataset?.size ?: 0
+    override fun getItemCount() = dataset.size
+}
+
+interface WeatherClickListener {
+    fun onWeatherClick(weatherModel: WeatherModel)
 }

@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="horizontal"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".presenter.activity.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    tools:context=".presenter.activity.MainActivity">
 
-<fragment android:name="com.example.weather.presenter.fragment.WeatherFragment"
-    android:id="@+id/weather_fragment"
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent" />
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation"
+        />
+    <fragment
+        android:id="@+id/weather_fragment"
+        android:name="com.example.weather.presenter.fragment.WeatherFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
-<fragment android:name="com.example.weather.presenter.fragment.DetailsFragment"
-    android:id="@+id/details_fragment"
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent" />
+    <fragment
+        android:id="@+id/details_fragment"
+        android:name="com.example.weather.presenter.fragment.DetailsFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
 </LinearLayout>

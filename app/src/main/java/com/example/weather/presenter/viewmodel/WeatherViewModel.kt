@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.weather.data.WeatherRepositoryImpl
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.usecases.GetWeatherUseCase
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +17,8 @@ class WeatherViewModel @Inject constructor(
     private val _weatherSelected = MutableLiveData<WeatherModel>()
     val weatherSelected: LiveData<WeatherModel>
         get() = _weatherSelected
+
+    val weather = MutableLiveData<List<WeatherModel>>()
 
     fun sendWeather(item: WeatherModel) {
         _weatherSelected.postValue(item)
@@ -33,10 +36,12 @@ class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             repo.refreshWeather(LAT, LON)
         }
+
+        viewModelScope.launch {
+            weatherUseCase.getWeather(LAT, LON).collect {
+                weather.postValue(it)
+            }
+        }
     }
-
-
-    val weather: LiveData<List<WeatherModel>> = weatherUseCase.getWeather(LAT, LON)
-
 
 }

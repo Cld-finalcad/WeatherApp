@@ -3,17 +3,16 @@ package com.example.weather.data
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.weather.data.database.WeatherDao
 import com.example.weather.data.database.models.WeatherModelDB
 import com.example.weather.data.models.Daily
 import com.example.weather.data.network.Webservice
-import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.models.WeatherModelRaw
 import com.example.weather.domain.repositories.WeatherRepository
-import com.example.weather.domain.utils.Convertor
-import com.example.weather.domain.utils.Recommandations
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -31,10 +30,16 @@ class WeatherRepositoryImpl @Inject constructor(
         val FRESH_TIMEOUT: Long = TimeUnit.DAYS.toMillis(1)
     }
 
-    override fun getWeather(lat: Double, lon: Double): LiveData<List<WeatherModelRaw>?> {
-        return weatherDao.load(lat, lon).map { weather ->
+    override fun getWeather(lat: Double, lon: Double): Flow<List<WeatherModelRaw>?> {
+        /*return weatherDao.load(lat, lon).map { weather ->
             weather?.map {
                 it.toWeatherModelRaw()
+            } ?: emptyList()
+        }*/
+
+        return weatherDao.load(lat, lon).map {
+            it?.map { weatherModelDB ->
+                weatherModelDB.toWeatherModelRaw()
             } ?: emptyList()
         }
     }
