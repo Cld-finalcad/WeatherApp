@@ -1,4 +1,4 @@
-package com.example.weather.presenter.fragment
+package com.example.weather.presentation.fragment
 
 import android.content.Context
 import android.graphics.Color
@@ -12,13 +12,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.weather.R
 import com.example.weather.domain.models.Flag
 import com.example.weather.domain.models.WeatherModel
-import com.example.weather.presenter.viewmodel.WeatherViewModel
+import com.example.weather.presentation.viewmodel.Event
+import com.example.weather.presentation.viewmodel.WeatherViewModel
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_details.*
 import kotlinx.android.synthetic.main.fragment_details.view.*
 import kotlinx.android.synthetic.main.recommandations_view.view.sunglass
 import kotlinx.android.synthetic.main.recommandations_view.view.sunglasstxt
@@ -52,7 +51,8 @@ class DetailsFragment @Inject constructor() : DialogFragment() {
 
         viewModel.weatherSelected.observe(
             viewLifecycleOwner,
-            Observer<WeatherModel> { weatherModel ->
+            Observer<Event<WeatherModel>> { weatherModelEvent ->
+                val weatherModel = weatherModelEvent.rawValue
                 if (!weatherModel.flags.contains(Flag.SUNNY)) {
                     view.sunglass.visibility = View.GONE
                     view.sunglasstxt.visibility = View.GONE

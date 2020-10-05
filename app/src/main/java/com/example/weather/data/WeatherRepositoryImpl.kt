@@ -49,7 +49,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
         if (!weatherExists or (getTimout() >= FRESH_TIMEOUT)) {
             val dataset = webservice.getWeather(lat, lon, "dd06a0028d37813dfa3ac07a81c4e269")
-            Log.d("Repository refresh", weatherExists.toString() + " " + dataset)
+            Log.d("Repository refresh",  "weatherExist=$weatherExists ; dataset=$dataset")
             updateTimeStamp()
 
             val weatherModels = dataset.daily.map {

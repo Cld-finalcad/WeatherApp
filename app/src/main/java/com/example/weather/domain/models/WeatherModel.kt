@@ -9,7 +9,7 @@ data class WeatherModel (
     val pressure: Int,
     val humidity: Int,
     val wind: Double,
-    val flags: Array<Flag>
+    val flags: List<Flag>
 )
 
 enum class Flag {

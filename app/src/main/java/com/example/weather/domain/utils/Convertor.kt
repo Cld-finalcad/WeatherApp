@@ -9,17 +9,16 @@ class Convertor {
 
     companion object {
 
-        val contryCode = Locale.getDefault().country
+        val contryCode = Locale.getDefault().country    // TODO Manage Warning
 
         fun getDate(date: Date): String {
-
-            if ("FR".equals(contryCode)) return getDateTime(date, "GMT+2")
+            if (Locale.FRANCE.country == contryCode) return getDateTime(date, "GMT+2")
 
             return getDateTime(date, "GMT-4")
         }
 
         fun getTemp(temp: Double): Double {
-            if ("FR".equals(contryCode))
+            if ("FR" == contryCode)
                 return temp - 273.15
             return temp
         }

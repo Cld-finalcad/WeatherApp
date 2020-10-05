@@ -2,11 +2,9 @@ package com.example.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weather.presenter.viewmodel.WeatherViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
-import dagger.Provides
 import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass

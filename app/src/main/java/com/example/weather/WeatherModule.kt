@@ -1,7 +1,9 @@
 package com.example.weather
 
 import androidx.lifecycle.ViewModel
-import com.example.weather.presenter.viewmodel.WeatherViewModel
+import com.example.weather.domain.usecases.GetWeather
+import com.example.weather.domain.usecases.GetWeatherImpl
+import com.example.weather.presentation.viewmodel.WeatherViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -13,4 +15,7 @@ abstract class WeatherModule {
     @IntoMap
     @ViewModelKey(WeatherViewModel::class)
     abstract fun bindViewModel(viewModel: WeatherViewModel): ViewModel
+
+    @Binds
+    abstract fun provideGetWeather(impl: GetWeatherImpl): GetWeather
 }

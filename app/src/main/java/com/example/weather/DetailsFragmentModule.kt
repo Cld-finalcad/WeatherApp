@@ -1,6 +1,6 @@
 package com.example.weather
 
-import com.example.weather.presenter.fragment.DetailsFragment
+import com.example.weather.presentation.fragment.DetailsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

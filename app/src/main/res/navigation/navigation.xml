@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.weather.presenter.fragment.SplashFragment"
+        android:name="com.example.weather.presentation.fragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.example.weather.presenter.fragment.WeatherFragment"
+        android:name="com.example.weather.presentation.fragment.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather">
 
@@ -28,7 +28,7 @@
     </fragment>
     <dialog
         android:id="@+id/detailsFragment"
-        android:name="com.example.weather.presenter.fragment.DetailsFragment"
+        android:name="com.example.weather.presentation.fragment.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
 

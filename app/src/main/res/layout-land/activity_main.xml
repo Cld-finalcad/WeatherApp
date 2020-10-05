@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    tools:context=".presenter.activity.MainActivity">
+    tools:context=".presentation.activity.MainActivity">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
@@ -16,16 +16,16 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation"
         />
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/weather_fragment"
-        android:name="com.example.weather.presenter.fragment.WeatherFragment"
+        android:name="com.example.weather.presentation.fragment.WeatherFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/details_fragment"
-        android:name="com.example.weather.presenter.fragment.DetailsFragment"
+        android:name="com.example.weather.presentation.fragment.DetailsFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
