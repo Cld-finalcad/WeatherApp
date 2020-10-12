@@ -2,100 +2,105 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="10dp"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
     app:cardPreventCornerOverlap="false"
-    tools:backgroundTint="@color/cardview_dark_background"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    tools:backgroundTint="@color/cardview_dark_background">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardlayout">
+        android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            tools:text="Paris"
             android:layout_alignParentTop="true"
+            android:layout_margin="10dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            />
+            tools:text="Paris" />
+
         <TextView
             android:id="@+id/date"
-            tools:text="Mercredi 10:00"
-            app:layout_constraintTop_toBottomOf="@id/city"
+            style="@style/subinfo"
             app:layout_constraintLeft_toLeftOf="parent"
-            style="@style/subinfo" />
+            app:layout_constraintTop_toBottomOf="@id/city"
+            tools:text="Mercredi 10:00" />
 
         <TextView
             android:id="@+id/main"
-            tools:text="Ensoleillé"
-            app:layout_constraintTop_toBottomOf="@id/date"
+            style="@style/subinfo"
             app:layout_constraintLeft_toLeftOf="parent"
-            style="@style/subinfo" />
+            app:layout_constraintTop_toBottomOf="@id/date"
+            tools:text="Ensoleillé" />
+
         <ImageView
             android:id="@+id/icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            tools:src="@drawable/soleil"
-            app:layout_constraintTop_toBottomOf="@id/main"
             app:layout_constraintLeft_toLeftOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/main"
+            tools:src="@drawable/soleil" />
 
         <TextView
             android:id="@+id/temperature"
-            tools:text="22 °F"
-            android:textSize="50sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textColor="#FFFFFF"
+            android:textSize="50sp"
             app:layout_constraintLeft_toRightOf="@+id/icon"
-            app:layout_constraintTop_toBottomOf="@id/main"/>
+            app:layout_constraintTop_toBottomOf="@id/main"
+            tools:text="22 °F" />
 
         <TextView
             android:id="@+id/pressure"
             style="@style/subinfo"
-            tools:text="Pression: 10"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/main"/>
+            app:layout_constraintTop_toTopOf="@id/main"
+            tools:text="Pression: 10" />
+
         <TextView
             android:id="@+id/humidity"
             style="@style/subinfo"
-            app:layout_constraintTop_toBottomOf="@id/pressure"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="Humidity: 40%"
-            />
+            app:layout_constraintTop_toBottomOf="@id/pressure"
+            tools:text="Humidity: 40%" />
+
         <TextView
             android:id="@+id/wind"
+            style="@style/subinfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/subinfo"
-            app:layout_constraintTop_toBottomOf="@id/humidity"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/humidity"
             tools:text="Wind: 4 km/h" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
-    <!--
+        <!--
 
 
-     -->
+         -->
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

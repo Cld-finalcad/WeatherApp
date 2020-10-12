@@ -39,12 +39,13 @@ class GetWeatherImpl @Inject constructor(
     }
 
     fun WeatherModelRaw.toWeatherModel(): WeatherModel {
+
         return WeatherModel(
             timezone = timezone,
-            date = Convertor.getDate(this.date),
+            date = Convertor.getDate(this.date, Locale.getDefault().country),
             main = main,
             iconURL = iconURL,
-            temperature = Convertor.getTemp(temperature),
+            temperature = Convertor.getTemp(temperature, Locale.getDefault().country),
             pressure = pressure,
             humidity = humidity,
             wind = wind,

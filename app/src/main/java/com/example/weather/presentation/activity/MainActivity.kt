@@ -1,7 +1,6 @@
 package com.example.weather.presentation.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -35,10 +34,13 @@ class MainActivity : AppCompatActivity() {
             this,
             Observer<Event<WeatherModel>> { weatherModelEvent ->
                 val weatherModelConsumed = weatherModelEvent.isConsumed
-                if (binding.detailsFragment == null && !weatherModelConsumed) {
+                if (!weatherModelConsumed) {
                     weatherModelEvent.consume()
-                    navHostFragment.navController.navigate(R.id.action_weatherFragment_to_detailsFragment)
+                    if (binding.detailsFragment == null) {
+                        navHostFragment.navController.navigate(R.id.action_weatherFragment_to_detailsFragment)
+                    }
                 }
+
             })
     }
 }

@@ -10,13 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.weather.R
+import com.example.weather.databinding.FragmentWeatherBinding
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.presentation.adapter.WeatherCardAdapter
 import com.example.weather.presentation.adapter.WeatherClickListener
 import com.example.weather.presentation.viewmodel.WeatherViewModel
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_weather.*
 import javax.inject.Inject
 
 class WeatherFragment @Inject constructor() : Fragment() {
@@ -24,11 +23,16 @@ class WeatherFragment @Inject constructor() : Fragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     val viewModel by activityViewModels<WeatherViewModel> { viewModelFactory }
 
+    private var _binding: FragmentWeatherBinding?= null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_weather, container, false)
+        _binding = FragmentWeatherBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +46,7 @@ class WeatherFragment @Inject constructor() : Fragment() {
             }
         })
 
-        recycler.apply {
+        binding.recycler.apply {
             setHasFixedSize(true)
 
             layoutManager = viewManager
@@ -58,6 +62,11 @@ class WeatherFragment @Inject constructor() : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

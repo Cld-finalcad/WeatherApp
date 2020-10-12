@@ -31,11 +31,6 @@ class WeatherRepositoryImpl @Inject constructor(
     }
 
     override fun getWeather(lat: Double, lon: Double): Flow<List<WeatherModelRaw>?> {
-        /*return weatherDao.load(lat, lon).map { weather ->
-            weather?.map {
-                it.toWeatherModelRaw()
-            } ?: emptyList()
-        }*/
 
         return weatherDao.load(lat, lon).map {
             it?.map { weatherModelDB ->
