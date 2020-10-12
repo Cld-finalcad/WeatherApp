@@ -9,6 +9,13 @@ import com.example.weather.domain.models.WeatherModel
 
 class MyViewHolder(val binding: WeatherCardsBinding, val weatherClickListener: WeatherClickListener) : RecyclerView.ViewHolder(binding.cardView) {
 
+    companion object {
+        const val CLEAR = "Clear"
+        const val CLOUDS = "Clouds"
+        const val SNOW = "Snow"
+        const val RAIN = "Rain"
+    }
+
     fun showElements(weatherModel: WeatherModel) {
 
         binding.cardView.setOnClickListener {
@@ -19,10 +26,10 @@ class MyViewHolder(val binding: WeatherCardsBinding, val weatherClickListener: W
         this.itemView.context
 
         when (weatherModel.main) {
-            "Clear" -> binding.cardlayout.setBackgroundResource(R.drawable.sunny)
-            "Clouds" -> binding.cardlayout.setBackgroundResource(R.drawable.cloud)
-            "Snow" -> binding.cardlayout.setBackgroundResource(R.drawable.snow)
-            "Rain" -> binding.cardlayout.setBackgroundResource(R.drawable.rain)
+            CLEAR -> binding.cardlayout.setBackgroundResource(R.drawable.sunny)
+            CLOUDS -> binding.cardlayout.setBackgroundResource(R.drawable.cloud)
+            SNOW -> binding.cardlayout.setBackgroundResource(R.drawable.snow)
+            RAIN -> binding.cardlayout.setBackgroundResource(R.drawable.rain)
             else -> {
                 binding.cardView.setCardBackgroundColor(
                     ContextCompat.getColor(

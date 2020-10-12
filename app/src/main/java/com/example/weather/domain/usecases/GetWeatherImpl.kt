@@ -1,6 +1,5 @@
 package com.example.weather.domain.usecases
 
-import com.example.weather.data.WeatherRepositoryImpl
 import com.example.weather.domain.models.WeatherModel
 import com.example.weather.domain.models.WeatherModelRaw
 import com.example.weather.domain.repositories.WeatherRepository
@@ -10,25 +9,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Provider
 
 interface GetWeather {
     operator fun invoke(lat: Double, lon: Double): Flow<List<WeatherModel>>
 }
 
-/*
-    private
-    public
-
-    protected
-        Subclasses
-
-    internal
- */
-
 class GetWeatherImpl @Inject constructor(
     private val repo: WeatherRepository
-): GetWeather {
+) : GetWeather {
     override fun invoke(lat: Double, lon: Double): Flow<List<WeatherModel>> {
         return repo.getWeather(lat, lon).map { weather ->
             weather?.map {
