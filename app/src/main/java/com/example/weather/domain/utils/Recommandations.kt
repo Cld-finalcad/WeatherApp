@@ -6,7 +6,7 @@ import com.example.weather.domain.models.Flag
 class Recommandations {
     companion object {
         fun setFlags(main: String, temperature: Double, wind: Double): MutableList<Flag> {
-            var flags: MutableList<Flag> = mutableListOf()
+            val flags: MutableList<Flag> = mutableListOf()
 
 
             if (main.equals("Clear")) flags.add(Flag.SUNNY)
