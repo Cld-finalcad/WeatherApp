@@ -1,6 +1,5 @@
 package com.example.weather.domain.utils
 
-import android.util.Log
 import com.example.weather.domain.models.Flag
 
 class Recommandations {
@@ -10,15 +9,17 @@ class Recommandations {
 
 
             if (main.equals("Clear")) flags.add(Flag.SUNNY)
-            if (temperature <= KELVIN_0) flags.add(Flag.COLD)                     // TODO Extract Const
-            if (temperature <= 293.15) flags.add(Flag.CHILLY)
-            if ((wind > 20) and (temperature <= WINDY)) flags.add(Flag.WINDY)
+            if (temperature <= KELVIN_0) flags.add(Flag.COLD)
+            if (temperature <= CHILLY) flags.add(Flag.CHILLY)
+            if ((wind > WINDY_SPEED) and (temperature <= WINDY_TEMP)) flags.add(Flag.WINDY)
 
             return flags
         }
 
         const val KELVIN_0 = 278.15
-        const val WINDY = KELVIN_0 + 20
+        const val WINDY_TEMP = KELVIN_0 + 20
+        const val WINDY_SPEED = 20
+        const val CHILLY = KELVIN_0 + 15
     }
 
 }

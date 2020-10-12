@@ -1,6 +1,5 @@
 package com.example.weather.domain.utils
 
-import android.util.Log
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,7 +34,9 @@ class Convertor {
                 val cal = Calendar.getInstance()
                 cal.time = date
 
-                return symbols.shortWeekdays[cal.get(Calendar.DAY_OF_WEEK)] + ", " + symbols.shortMonths[cal.get(Calendar.MONTH)] + sdf.format(date)
+                return symbols.shortWeekdays[cal.get(Calendar.DAY_OF_WEEK)] + ", " + symbols.shortMonths[cal.get(
+                    Calendar.MONTH
+                )] + sdf.format(date)
             } catch (e: Exception) {
                 return e.toString()
             }
