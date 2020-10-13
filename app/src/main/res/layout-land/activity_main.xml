@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
+    android:background="@color/snow"
     tools:context=".presentation.activity.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -29,5 +30,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
+
 
 </LinearLayout>

@@ -1,6 +1,7 @@
-package com.example.weather
+package com.example.weather.di
 
 import android.app.Application
+import com.example.weather.di.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector

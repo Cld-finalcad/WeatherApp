@@ -1,6 +1,7 @@
-package com.example.weather
+package com.example.weather.di
 
 import androidx.lifecycle.ViewModel
+import com.example.weather.di.ViewModelKey
 import com.example.weather.domain.usecases.GetWeather
 import com.example.weather.domain.usecases.GetWeatherImpl
 import com.example.weather.presentation.viewmodel.WeatherViewModel

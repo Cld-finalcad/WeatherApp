@@ -1,8 +1,6 @@
-package com.example.weather
+package com.example.weather.di
 
 import android.content.Context
-import com.example.weather.data.database.DataBaseModule
-import com.example.weather.data.network.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule

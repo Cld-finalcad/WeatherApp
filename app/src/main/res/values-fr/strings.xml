@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Météo</string>
+    <string name="app_name">Final Météo</string>
     <string name="temp">%1$.2f ° C</string>
     <string name="wind">Vent: %1$.2f m/s</string>
     <string name="humidity">Humidité: %d</string>

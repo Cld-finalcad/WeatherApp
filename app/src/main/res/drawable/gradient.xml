@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:insetLeft="20dp"
-    android:insetTop="20dp"
-    android:insetRight="20dp"
-    android:insetBottom="20dp">
+    android:insetLeft="10dp"
+    android:insetTop="10dp"
+    android:insetRight="10dp"
+    android:insetBottom="10dp">
     <shape
         android:shape="rectangle">
         <corners android:radius="40dp" />
         <gradient
             android:angle="90"
             android:endColor="@color/clear"
-            android:startColor="@color/snow"
-            android:type="linear" />
+            android:startColor="#6AB0CF"
+            android:type="linear"/>
         <padding android:bottom="20dp" />
     </shape>
 </inset>

@@ -68,7 +68,7 @@ class RecommandationsTest {
         val result = Recommandations.setFlags(main, temperature, wind)
 
         // assert
-        assertThat(result).isEqualTo(mutableListOf<Flag>(Flag.COLD, Flag.CHILLY))
+        assertThat(result).isEqualTo(mutableListOf(Flag.COLD, Flag.CHILLY))
     }
 
 

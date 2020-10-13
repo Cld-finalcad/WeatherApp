@@ -1,4 +1,4 @@
-package com.example.weather
+package com.example.weather.di
 
 import com.example.weather.presentation.activity.MainActivity
 import dagger.Module

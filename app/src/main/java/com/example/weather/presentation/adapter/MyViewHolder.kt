@@ -7,14 +7,7 @@ import com.example.weather.R
 import com.example.weather.databinding.WeatherCardsBinding
 import com.example.weather.domain.models.WeatherModel
 
-class MyViewHolder(val binding: WeatherCardsBinding, val weatherClickListener: WeatherClickListener) : RecyclerView.ViewHolder(binding.cardView) {
-
-    companion object {
-        const val CLEAR = "Clear"
-        const val CLOUDS = "Clouds"
-        const val SNOW = "Snow"
-        const val RAIN = "Rain"
-    }
+class MyViewHolder(private val binding: WeatherCardsBinding, private val weatherClickListener: WeatherClickListener) : RecyclerView.ViewHolder(binding.cardView) {
 
     fun showElements(weatherModel: WeatherModel) {
 
@@ -65,5 +58,12 @@ class MyViewHolder(val binding: WeatherCardsBinding, val weatherClickListener: W
              R.string.wind,
              weatherModel.wind
          ))
+    }
+
+    companion object {
+        const val CLEAR = "Clear"
+        const val CLOUDS = "Clouds"
+        const val SNOW = "Snow"
+        const val RAIN = "Rain"
     }
 }

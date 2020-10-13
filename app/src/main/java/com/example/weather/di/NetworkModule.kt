@@ -1,6 +1,7 @@
-package com.example.weather.data.network
+package com.example.weather.di
 
 import com.example.weather.data.WeatherRepositoryImpl
+import com.example.weather.data.network.Webservice
 import com.example.weather.domain.repositories.WeatherRepository
 import dagger.Module
 import dagger.Provides
